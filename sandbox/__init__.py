@@ -10,13 +10,22 @@ Top-level package for sandbox.
 __version__ = "0.0.0"
 
 
-def hello(who='world'):
-    """'Hello world' method.
+def tim():
+    """"""
+                   # build cloop: 3.877232 s
+    timings = { 'cloop'      : 2.151362
+              , 'numba cloop': 0.082121
+              , 'cloopv'     : 0.035
+              , 'cloopv1'    : 0.024925
+              , 'cloopv1b'   : 0.014616
+              }
+    for k,v in timings.items():
+        if k == 'cloop':
+            vref = v
+            print(f"{k}: {v}s")
+        else:
+            print(f"{k}: {v}s x{vref/v} x{vprev/v}")
+        vprev = v
 
-    :param str who: whom to say hello to
-    :returns: a string
-    """
-    result = "Hello " + who
-    return result
-
-# Your code here...
+if __name__ == "__main__":
+    tim()
